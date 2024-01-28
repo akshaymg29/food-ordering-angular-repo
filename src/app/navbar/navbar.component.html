@@ -1,0 +1,66 @@
+<mat-toolbar class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="navbar-toggler collapsed"
+        aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <span>Home</span>
+        </button>
+        <button mat-menu-item routerLink="/restaurantList">
+            <span>Restaurant List</span>
+        </button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/about">
+            <span>About</span>
+        </button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/contactUs">
+            <span>Contact Us</span>
+        </button>
+    </mat-menu>
+    <span class="text-primary">Online Order App</span>
+    <div class="container">
+        <div class="navbar-collapse collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="/" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Home</a>
+                </li>
+                <li *ngIf="LoggedInUser.user.email && LoggedInUser.user.roles.includes(1000)" class="nav-item">
+                    <a class="nav-link" routerLink="/restaurantList" routerLinkActive="active">Restaurant List</a>
+                </li>
+
+                <!-- use below template for Admin routes -->
+                <!-- <li *ngIf="LoggedInUser.user.email && LoggedInUser.user.roles.includes(2000)" class="nav-item">
+                    <a class="nav-link" routerLink="/payment" routerLinkActive="active">Payment</a>
+                </li> -->
+                <li *ngIf="LoggedInUser.user.email && LoggedInUser.user.roles.includes(2000)" class="nav-item">
+                    <a class="nav-link" routerLink="/restaurantForm" routerLinkActive="active">Add Restaurant</a>
+                </li>
+                <li *ngIf="LoggedInUser.user.email && LoggedInUser.user.roles.includes(2000)" class="nav-item">
+                    <a class="nav-link" routerLink="/addMenuItem" routerLinkActive="active">Add Menu Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/contactUs" routerLinkActive="active">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <span class="example-spacer"></span>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li *ngIf="LoggedInUser.user.email" class="nav-item">
+            <a class="nav-link" routerLink="/cart"><mat-icon>shopping_cart</mat-icon></a>
+        </li>
+        <li *ngIf="!LoggedInUser.user.email" class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="/login" routerLinkActive="active">Login</a>
+        </li>
+        <li *ngIf="!LoggedInUser.user.email" class="nav-item">
+            <a class="nav-link" routerLink="/signUp">Sign Up</a>
+        </li>
+        <li *ngIf="LoggedInUser.user.email" class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="/logout" routerLinkActive="active">Logout</a>
+        </li>
+    </ul>
+</mat-toolbar>

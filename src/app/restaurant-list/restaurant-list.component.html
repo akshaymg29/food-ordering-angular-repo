@@ -1,0 +1,15 @@
+<div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search for restaurants...">
+  </div>
+  
+  <div class="restaurant-container">
+    <div class="restaurant-card" *ngFor="let restaurant of filteredRestaurants" (click)="onCardClick(restaurant)">
+      <img [src]="restaurant.image" alt="{{restaurant.name}}">
+      <div class="restaurant-details">
+        <h2>{{restaurant.name}}</h2>
+        <p>{{restaurant.address.building}}, {{restaurant.address.street}}, {{restaurant.address.zipcode}}</p>
+        <!-- <p>{{restaurant.reviews[0].review}} reviews</p> -->
+  
+      </div>
+    </div>
+  </div>

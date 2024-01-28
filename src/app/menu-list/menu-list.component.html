@@ -1,0 +1,26 @@
+<div>
+    <mat-toolbar class="navbar navbar-light bg-light">
+      <form class="form-inline justify-center">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </mat-toolbar>
+    <main class="form-control">
+    <section class="menu-list d-flex flex-wrap" >
+        <div class="col-md-3 mx-auto my-5" *ngFor="let menu of menuList">
+            <mat-card class="card shadow-lg p-3 mb-5 bg-white rounded">
+                <mat-card-header>
+                  <mat-card-title>{{menu.menu_name}}</mat-card-title>
+                  <mat-card-subtitle>Price: ${{menu.menu_price}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src={{menu.menu_image}}>
+                <mat-card-content></mat-card-content>
+                <mat-card-actions>
+                  <button class="btn btn-outline-secondary my-2 my-sm-0" (click)="
+                  _addItemToCart(menu.menu_id,menu.menu_name,menu.menu_price,1)" mat-button>Add to Cart</button>
+                </mat-card-actions>
+              </mat-card>
+        </div>
+    </section>
+    </main>
+</div>

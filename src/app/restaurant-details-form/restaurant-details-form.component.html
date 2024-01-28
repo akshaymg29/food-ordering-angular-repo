@@ -1,0 +1,42 @@
+
+<h1 class="text-center">Restaurant Details</h1>
+<form (ngSubmit)="submitForm()" #restaurantForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" class="form-control" required [(ngModel)]="restaurant.name">
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" class="form-control" required [(ngModel)]="restaurant.phone" pattern="[0-9]{10}">
+        <small class="form-text text-muted">Enter 10 digits only</small>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" class="form-control" required [(ngModel)]="restaurant.email">
+      </div>
+      <div class="form-group">
+        <label for="image">Image URL</label>
+        <input type="url" id="image" name="image" class="form-control" required [(ngModel)]="restaurant.image">
+      </div>
+
+    <h3 class="text-center">Address</h3>  
+    <div class="form-group">
+      <label for="building">Building</label>
+      <input type="text" id="building" name="building" class="form-control" required [(ngModel)]="restaurant.building">
+    </div>
+    <div class="form-group">
+        <label for="street">Street</label>
+        <input type="text" id="street" name="street" class="form-control" required [(ngModel)]="restaurant.street">
+      </div>
+    <div class="form-group">
+        <label for="zipcode">Zipcode</label>
+        <input type="text" id="zipcode" name="zipcode" class="form-control" required [(ngModel)]="restaurant.zipcode">
+      </div>
+    <h3 class="text-center">Cuisine</h3>  
+    <div class="form-group">
+        <label for="cuisine">Cuisine Type</label>
+        <input type="text" id="cuisine" name="cuisine" class="form-control" required [(ngModel)]="restaurant.cuisine">
+      </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!restaurantForm.valid">Submit</button>
+  </form>
+  

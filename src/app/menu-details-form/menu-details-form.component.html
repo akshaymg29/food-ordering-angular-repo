@@ -1,0 +1,96 @@
+
+<mat-card>
+    <!-- {{restaurants | json}} -->
+    <h1 class="ml20 mt20">Add Menu Item</h1>
+
+    <div class="container-fluid">
+
+        <div class="row w100">
+            <div class="col-md-8 offset-md-2">
+
+                <form (ngSubmit)="formSubmit()">
+
+                    <mat-form-field class="w100" appearance="fill">
+
+                        <mat-label>Enter Menu Name</mat-label>
+                        <input [(ngModel)]="restaurants.menu_list.menu_name" type="text" name="menu_name"
+                            placeholder="Enter Menu Name Here" matInput required>
+
+                    </mat-form-field>
+
+                    <mat-form-field class="w100" appearance="fill">
+
+                        <mat-label>Enter Menu Category</mat-label>
+                        <input [(ngModel)]="restaurants.menu_list.menu_category" name="menu_category"
+                            placeholder="Enter description here" row="15" matInput>
+
+                    </mat-form-field>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <mat-form-field class="w100" appearance="fill">
+
+                                <mat-label>Enter Menu Image</mat-label>
+                                <input [(ngModel)]="restaurants.menu_list.menu_image" type="text" name="menu_image"
+                                    placeholder="Enter Menu Image" matInput>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="w100" appearance="fill">
+
+                                <mat-label>Enter Menu Price</mat-label>
+                                <input [(ngModel)]="restaurants.menu_list.menu_price" type="number" name="menu_price"
+                                    placeholder="Enter Menu Price" matInput>
+
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <br />
+
+                    <br />
+
+                    <mat-form-field class="w100" appearance="fill">
+
+                        <mat-label>Select Restaurant</mat-label>
+                    <mat-select name="restaurants" [(ngModel)]="restaurants.restaurant_id">
+                        <mat-option *ngFor="let restaurant of selectRestaurant" [value]="restaurant.restaurant_id">
+                          {{restaurant.name}}
+                        </mat-option>
+                      </mat-select>
+
+                      </mat-form-field>
+
+                    <!-- <mat-form-field class="w100" appearance="fill">
+
+                        <mat-label>Select Restaurant</mat-label>
+                        <mat-select name="menu_list" [(ngModel)]="selectRestaurant.restaurant_id">
+                            <mat-option *ngFor="let r of selectRestaurant" [value]="r._id">
+
+                                {{r.name}}
+
+                            </mat-option>
+
+                        </mat-select>
+
+
+                    </mat-form-field> -->
+
+
+                    <div class="container text-center mb20">
+                        <button mat-raised-button color="warn" type="submit">Add Menu Item</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</mat-card>
+
+
+<!-- {{quizData | json}} -->

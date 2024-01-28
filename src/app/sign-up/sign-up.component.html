@@ -1,0 +1,71 @@
+<!-- Template Driven Form -->
+<form #registerForm="ngForm" (ngSubmit)="onSubmit(callSuccessAlert)">
+    <div class="material-icons">lock</div>
+    <h1>Sign Up</h1>
+    <mat-form-field class="field-full-width">
+        <mat-label>Enter your name</mat-label>
+        <input matInput
+            placeholder="Ex. Pat Smith"
+            name="name" 
+            id="name"
+            [(ngModel)]="user.name" 
+            #name="ngModel" 
+            required minlength="3">
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors?.['required']">
+            Name is <strong>required</strong>.
+        </mat-error>
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors?.['minlength']">
+            Name must be at least <strong>3</strong> characters long.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="field-full-width">
+        <mat-label>Enter your email</mat-label>
+        <input type="text" matInput
+            placeholder="Ex. pat@example.com"
+            name="email" 
+            id="email"
+            [(ngModel)]="user.email" 
+            #email="ngModel" required
+            email>
+        <mat-error *ngIf="email.invalid && (email.dirty || email.touched) && email.errors?.['required']">
+            Email is <strong>required</strong>.
+        </mat-error>
+        <mat-error *ngIf="email.touched && email.errors?.['email']">
+            Email entered is an <strong>invalid </strong>email address.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="field-full-width">
+        <mat-label>Enter the password</mat-label>
+        <input matInput
+            placeholder="Ex. 1#gwc6d%vs"
+            name="password" 
+            id="password"
+            [(ngModel)]="user.password" 
+            #password="ngModel" 
+            [type]="hide ? 'password' : 'text'"
+            required
+            minlength="8">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.errors?.['required']">
+            Password is <strong>required</strong>.
+        </mat-error>
+        <mat-error *ngIf="password.touched && password.errors?.['minlength']">
+            Password must be at least <strong>8</strong> characters long.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-hint>Already a user? <a routerLink="/login">Login</a></mat-hint>
+
+      <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+
+      <ng-template #callSuccessAlert>
+        <h1 mat-dialog-title>Successful Submission</h1>
+        <div mat-dialog-content>Congratulations! You have been successfully registered in our system.</div>
+        <div mat-dialog-content>Login to visit our website.</div>
+        <div mat-dialog-actions>
+            <button mat-button mat-dialog-close>Close</button>
+        </div>
+    </ng-template>
+</form>

@@ -1,0 +1,64 @@
+<!-- shopping-cart.component.html -->
+
+<section class="cart_section">
+    <mat-card-title>Food Cart</mat-card-title>
+    <mat-card-content>Your food cart is ready! </mat-card-content>
+    <mat-card-content>You are a few steps away from having a divine experience.</mat-card-content>
+    <div class="spacer">
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-lg-9">
+            <div class="row shop-listing">
+                <mat-card-content>
+                    <div *ngIf="cartDetails == null">No items in cart</div>
+                <table mat-table class="table shop-table" *ngIf="cartDetails">
+                <tr>
+                  <th class="b-0">Name</th>
+                  <th class="b-0">Price</th>
+                  <th class="b-0">Quantity</th>
+                  <th class="b-0">Total Price</th>
+                  <th class="b-0">Delete Item</th>
+                </tr>
+                <tr *ngFor="let item of cartDetails.items">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>
+                    <button class="btn btn-outline-primary" (click)="_increamentQTY(item.productId, item.price, 1)">+</button>
+                    {{ item.quantity }}
+                    <button class="btn btn-outline-danger" (click)="_increamentQTY(item.productId, item.price, -1)">-</button>
+                  </td>
+                  <td>
+                    <h5 class="font-medium m-b-30">{{item.total}}</h5>
+                  </td>
+                  <td>
+                    <!-- <button mat-icon-button color="warn" (click)="_emptyCart()">
+                        <mat-icon>Delete</mat-icon>
+                      </button> -->
+                      <div class="example-button-container">
+                        <button mat-fab color="warn" (click)="_removeItem(item.productId, item.price, 0)" aria-label="Example icon button with a delete icon">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" align-self="right">Total :{{ cartDetails.subTotal }}</td>
+                  <td colspan="4" align-self="right">
+                    <button mat-raised-button color="primary" (click)="_payNow(cartDetails.subTotal)">Pay Now</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button mat-raised-button color="warn" (click)="_emptyCart()">Empty Cart</button>
+                  </td>
+                </tr>
+              </table>
+            </mat-card-content>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  

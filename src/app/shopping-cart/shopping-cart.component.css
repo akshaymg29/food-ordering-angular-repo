@@ -1,0 +1,34 @@
+table {
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.cart_section{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 200%;
+    width: 100%;
+    margin-top: 1.8rem;
+}
+
+.spacer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 170px;
+    margin-right: auto;
+    text-align: center;
+    max-width: 200%;
+    width: 100%;
+    align-self: center;
+    margin-top: 1.5rem;
+}

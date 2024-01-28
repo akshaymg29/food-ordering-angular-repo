@@ -1,0 +1,114 @@
+<!-- <div class="container">
+    <mat-snack-bar-container></mat-snack-bar-container>
+</div> -->
+<mat-toolbar>
+    Add Payment
+</mat-toolbar>
+
+
+<!-- reactive form -->
+<form [formGroup]="paymentformGroup" class="paymentformGroup" (ngSubmit)="onFormSubmit(callSuccessAlert)">
+
+    <input type="hidden" formControlName="$key" />
+
+    <div class="row">
+        <mat-form-field class="w100pct">
+
+            <input formControlName="amount" matInput placeholder="Amount*" />
+            <mat-error>
+                Amount is <strong>required </strong>.
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+
+    <div class="row">
+        <mat-form-field class="w100pct">
+
+            <input type="text" formControlName="cardNumber" matInput placeholder="Card Number*" />
+            <mat-error>
+                card number is <strong>required. min lenth 13 & max length 16</strong>.
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+
+    <div class="row">
+
+        <mat-form-field class="w100pct">
+
+            <input formControlName="cardHolder" matInput placeholder="Card Holder*" />
+            <mat-error>
+                Cardholder is <strong>required </strong>.
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+
+    <!-- <div class="row">
+           
+        </div>
+        -->
+
+    <div class="row">
+
+        <mat-form-field class="w30pct">
+            <mat-select formControlName="expireMonth" matInput placeholder="Expire Month*">
+                <ng-container *ngFor="let item of mnthList">
+                    <mat-option value="{{item}}">{{item}}</mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-error>
+                Expiry Month is <strong>required </strong>.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w30pct">
+            <mat-select formControlName="expireYear" matInput placeholder="Expire Year*">
+                <ng-container *ngFor="let item of yearList">
+                    <mat-option value="{{item}}">{{item}}</mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-error>
+                Expiry Year is <strong>required </strong>.
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+
+    <div class="row">
+
+        <mat-form-field class="w30pct">
+
+            <input formControlName="cvv" matInput placeholder="cvv" type="password" />
+            <mat-error>
+                cvv is <strong>required and length 3</strong>.
+            </mat-error>
+            <!-- <div *ngIf="paymentformGroup.get('cvv').invalid && (paymentformGroup.get('cvv').dirty || paymentformGroup.get('cvv').touched)">
+                    <div *ngIf="paymentformGroup.get('cvv').errors?.required">This field is required.</div>
+                    <div *ngIf="paymentformGroup.get('cvv').errors?.minlength">Must be at least {{ paymentformGroup.get('cvv').errors?.minlength.requiredLength }} characters long.</div>
+                  </div> -->
+            <!-- <div **ngIf="paymentformGroup?.controls?.cvv?.invalid && paymentformGroup?.controls?.cvv?.touched">
+                    {{paymentformGroup?.controls?.cvv?.errors? | json}}
+                  </div> -->
+
+        </mat-form-field>
+
+    </div>
+
+    <div class="row">
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!paymentformGroup.valid">Pay</button>
+
+    </div>
+    <ng-template #callSuccessAlert>
+        <h1 mat-dialog-title></h1>
+        <div mat-dialog-content>{{paymentStatus.message}}</div>
+        <div mat-dialog-content>Payment Id: {{paymentStatus.paymentId}}</div>
+        <div mat-dialog-actions>
+            <button mat-button mat-dialog-close>Close</button>
+        </div>
+    </ng-template>
+
+</form>

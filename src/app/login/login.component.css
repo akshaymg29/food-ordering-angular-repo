@@ -1,0 +1,14 @@
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    margin:auto
+}
+.container{
+    display: flex;
+    flex-direction: column;
+ height: 100%;
+}
+
+.formControl{
+    margin:1rem
+}

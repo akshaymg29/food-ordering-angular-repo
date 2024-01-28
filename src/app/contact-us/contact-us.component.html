@@ -1,0 +1,60 @@
+<!-- Template Driven Form -->
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(callSuccessAlert, contactForm)">
+    <h1>Contact Us</h1>
+    <mat-form-field class="field-full-width">
+        <mat-label>Enter your name</mat-label>
+        <input matInput
+            placeholder="Ex. Pat Smith"
+            name="name" 
+            id="name"
+            [(ngModel)]="user.name" 
+            #name="ngModel" 
+            required minlength="3">
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors?.['required']">
+            Name is <strong>required</strong>.
+        </mat-error>
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors?.['minlength']">
+            Name must be at least <strong>3</strong> characters long.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="field-full-width">
+        <mat-label>Enter your email</mat-label>
+        <input type="text" matInput
+            placeholder="Ex. pat@example.com"
+            name="email" 
+            id="email"
+            [(ngModel)]="user.email" 
+            #email="ngModel" required
+            email>
+        <mat-error *ngIf="email.invalid && (email.dirty || email.touched) && email.errors?.['required']">
+            Email is <strong>required</strong>.
+        </mat-error>
+        <mat-error *ngIf="email.touched && email.errors?.['email']">
+            Email entered is an <strong>invalid </strong>email address.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="field-full-width">
+        <mat-label>Leave your message</mat-label>
+        <textarea matInput 
+            placeholder="Write your comments here..."
+            name="message" 
+            id="message"
+            [(ngModel)]="user.message" 
+            #message=ngModel required></textarea>
+        <mat-error *ngIf="message.invalid && (message.dirty || message.touched) && message.errors?.['required']">
+            Message is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+
+      <button type="submit" [disabled]="!contactForm.valid">Submit</button>
+
+      <ng-template #callSuccessAlert>
+        <h1 mat-dialog-title>Successful Submission</h1>
+        <div mat-dialog-content>Your message has been successfully sent!</div>
+        <div mat-dialog-actions>
+            <button mat-button mat-dialog-close>Close</button>
+        </div>
+    </ng-template>
+</form>
